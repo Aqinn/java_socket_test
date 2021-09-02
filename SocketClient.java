@@ -17,11 +17,11 @@ public class SocketClient {
         // 发送的消息内容
         final String message = "Hi,Java.";
         // 使用输出流发送消息
-        try (OutputStream outputStream = socket.getOutputStream()) {
+        try (DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream())) {
             // 给服务器端发送 10 次消息
             for (int i = 0; i < 10; i++) {
                 // 发送消息
-                outputStream.write(message.getBytes(StandardCharsets.UTF_8));
+                outputStream.writeUTF(message);
             }
         }
     }
